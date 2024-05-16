@@ -5,6 +5,6 @@ export class UsersController {
 
     @Get()
     async getAll(){
-        return 'ok'
+        return 'ok!!'
     }
 }

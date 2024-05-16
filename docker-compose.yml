@@ -1,9 +1,31 @@
 version: '3'
 
 services:
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+    container_name: nst-pets-app
+    ports:
+      - ${PORT}:${PORT}
+    networks:
+      - pets-app-net
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - .:/usr/src/app
+      - /usr/src/app/node_modules
+    depends_on:
+      - db
   db:
+    container_name: db-pets
     image: postgres:16.3-bullseye
     restart: always
+    networks:
+      - pets-app-net
     ports:
       - ${DB_PORT}:${DB_PORT}
     volumes:
@@ -16,5 +38,7 @@ services:
 volumes:
   postgres:
     external: false
-  
-   
+
+networks:
+  pets-app-net:
+    external: false
