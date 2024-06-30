@@ -11,13 +11,18 @@ export class AuthService {
     ){}
 
     async validateClient(client_id: number, client_secret: string){
-        console.log('hola');
-        const client = await this.clientService.find({client_id,client_secret});
-        if(client){
-            const {client_secret, ...result } = client;
-            return result;
+        try{
+
+            const client = await this.clientService.find({client_id,client_secret});
+            if(client){
+                const {client_secret, ...result } = client;
+                return result;
+            }
+            return null;
+        }catch(error){
+            console.log(error);
+            return null;
         }
-        return null;
     }
     
     async login(client: AuthCredentialsDto): Promise<any> {
