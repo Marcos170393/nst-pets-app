@@ -1,4 +1,5 @@
-import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, Timestamp, UpdateDateColumn } from "typeorm";
+import { Role } from "./role.entity";
 
 @Entity({name:'users'})
 export class User {
@@ -9,13 +10,16 @@ export class User {
     username: string;
 
     @Column()
-    email: string
+    email: string;
+
+    @ManyToOne( ()=> Role, (role)=> role)
+    role: Role;
 
     @Column()
-    role: string
+    password: string;
 
     @Column()
-    password: string
+    phone: string;
 
     @CreateDateColumn()
     created_at: Date;
