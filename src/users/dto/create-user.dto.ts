@@ -1,4 +1,5 @@
-import { IsEmail, IsNumber, IsString, Length } from "class-validator";
+import { IsEmail, IsNumber, IsString, Length, Validate } from "class-validator";
+import { IdValidator } from "src/libraries/class-validator/id.validator";
 
 export class CreateUserDto {
     
@@ -9,7 +10,7 @@ export class CreateUserDto {
     @IsNumber()
     phone: string;
 
-    @IsNumber()
+    @Validate(IdValidator)
     roleId: number;
 
     @IsString()
