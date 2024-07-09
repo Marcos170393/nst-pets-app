@@ -1,7 +1,7 @@
 import { IsString, Length, Validate } from "class-validator";
 import { UserIdValidator } from "src/decorators/class-validator/user-id.validator";
 
-export class PostCreateDto {
+export class CreatePostDto {
     @IsString()
     title: string;    
 
