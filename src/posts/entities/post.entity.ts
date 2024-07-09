@@ -1,4 +1,3 @@
-import { Length, Max } from "class-validator";
 import { User } from "src/users/entities/user.entity";
 import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
@@ -7,12 +6,10 @@ export class Post {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column({unique: true})
-    @Length(50,100)
+    @Column({unique: true,length: 200})
     title: string;
 
-    @Column()
-    @Length(200, 1000)
+    @Column({length:1000})
     description: string;
 
     @Column()

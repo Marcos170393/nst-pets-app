@@ -1,7 +1,7 @@
 import { ValidationArguments, ValidatorConstraint, ValidatorConstraintInterface } from "class-validator";
 import { RoleService } from "src/users/role.service";
 
-@ValidatorConstraint({name:'existingId',async: true})
+@ValidatorConstraint({name:'rolId',async: true})
 export class RolIdValidator implements ValidatorConstraintInterface {
     constructor(private roleService : RoleService){}
 

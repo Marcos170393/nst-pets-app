@@ -13,6 +13,11 @@ export class UsersService {
         private readonly roleService: RoleService
     ){}
 
+    async exists(id: number): Promise<boolean> {
+        return await this.userRepo.exists({ where: { id } });
+     }
+
+
     async create(user: CreateUserDto): Promise<User> {
         const { roleId } = user; 
     
